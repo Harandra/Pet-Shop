@@ -1,0 +1,111 @@
+{% extends "partials/base.html" %}
+
+{%load static%}
+
+{% block content %}
+<body>
+    <section id="header">
+        <a onclick="document.location='{% url 'core:index' %}';"><img src="{% static 'assets/img/logo2.png' %}" class="logo"></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="{% url 'core:index' %}">Home</a></li>
+                <li><a href="{% url 'userauths:shop' %}">Shop</a></li>
+                <li><a class="active" href="{% url 'userauths:blog' %}">Blog</a></li>
+                <li><a href="{% url 'userauths:about' %}">About</a></li>
+                <li><a href="{% url 'userauths:contact' %}">Contact</a></li>
+                <div class="box">
+                    <div class="cart-count">0</div>
+                    <li><abbr title="Cart"><a href="{% url 'userauths:shop' %}"><i class="fa-solid fa-cart-shopping" id="cart-icon"></i></a></abbr></li>
+                </div>
+                <div class="cart-new ">
+                    <div class="cart-title">Cart Items</div>
+                    <div class="cart-content"></div>
+                    <div class="total">
+                        <div class="total-title">Total</div>
+                        <div class="total-price">₹0</div>
+                    </div>
+                    <button class="normal" id="btn-buy">Place Order</button>
+                    <i class="fa-solid fa-xmark" id="cart-close"></i>
+                </div>
+                {% if request.user.is_authenticated %}
+                <li><abbr title="Logout"><a href="{% url 'userauths:sign-out'%}"><i class="fa-solid fa-user"></i></i></a></abbr></li>    
+                {% else %}
+                <li><abbr title="Login"><a href="{% url 'userauths:sign-in'%}"><i class="fa-solid fa-right-to-bracket"></i></a></abbr></li>
+                {% endif %}    
+            </ul>
+        </div>
+    </section>
+    <section id="page-header" class="blog-header"> 
+        <h2>#readmore</h2>
+        <p>Read all case studies about our products!</p>
+    </section> 
+    <section id="blog">
+        <div class="blog-box">
+            <div class="blog-img">
+                <img src="{% static "assets/img/blog/b1.png" %}">
+            </div>
+            <div class="blog-details">
+                <h4>Puppy care Pedigree</h4>
+                <p>From over 40 years experience of developing PEDIGREE® recipes, 
+                    we have a range that is designed to protect your dog in four ways: 
+                    to help support their natural defences, a healthy skin and coat, good digestion and healthy teeth....</p>
+                <a target="_blank" href="https://www.pedigree.in/puppy">CONTINUE READING</a>
+            </div>
+            <h1>13/01</h1>
+        </div>
+        <div class="blog-box">
+            <div class="blog-img">
+                <img src="{% static "assets/img/blog/b2.png" %}">
+            </div>
+            <div class="blog-details">
+                <h4>Your kitten's diet</h4>
+                <p>At WHISKAS®, we're devoted to helping all cats live healthy and happy lives. Your cat's food is more than a way to satisfy your cat's hunger, 
+                    it's how your cat gets their nutrients. Mealtime is an important ritual for cats, and to maximise their enjoyment, it's important to find the right food 
+                    for your feline friend....</p>
+                <a target="_blank" href="https://www.whiskas.com.au/blog/health-and-nutrition">CONTINUE READING</a>
+            </div>
+            <h1>30/03</h1>
+        </div>
+        <div class="blog-box">
+            <div class="blog-img">
+                <img src="{% static "assets/img/blog/b3.png" %}">
+            </div>
+            <div class="blog-details">
+                <h4>Flowerhorn Fish Food</h4>
+                <p>Hi-Red Flower Horn fish food is a floating 
+                    pellet with natural spirulina, natural carotene. Special amino acid is added to bring out the red pigment 
+                    and to enforce the formation of the flowerhorn's head.....</p>
+                <a target="_blank" href="https://www.taiyogroup.in/">CONTINUE READING</a>
+            </div>
+            <h1>03/11</h1>
+        </div>
+        <div class="blog-box">
+            <div class="blog-img">
+                <img src="{% static "assets/img/blog/b4.png" %}">
+            </div>
+            <div class="blog-details">
+                <h4>A balanced diet that supports their flight</h4>
+                <p>The right efforts for every bird's comfort. We at Happy Wings provide the perfect nutritive feeding solutions for every bird. We understand the significance of a 
+                    balanced and nutritious diet and its influence on your bird's health. Our wild bird food products cater to the nourishment requirements of every bird and 
+                    can be fed all year-round. Our feed meets the quality standards set by the 'Wild Bird Feeding Institute'....</p>
+                <a target="_blank" href="https://myhappywings.com/">CONTINUE READING</a>
+            </div>
+            <h1>08/11</h1>
+        </div>
+    </section>
+    <section id="pagination" class="section-p1">
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#"><i class="fa-solid fa-circle-arrow-right"></i></a>
+    </section>
+    <section id="newsletter" class="section-p1 section-m1">
+        <div class="newstext">
+            <h4>Sign Up For Newsletters</h4>
+            <p>Get E-mail updates about our latest shop and <span>special offers</span></p>
+        </div>
+        <div class="form">
+            <input type="text" placeholder="Your email address">
+            <button class="normal">Sign Up</button>
+        </div>
+    </section>
+    {% endblock content %}

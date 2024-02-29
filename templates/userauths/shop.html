@@ -1,0 +1,357 @@
+{% extends "partials/base.html" %}
+
+{%load static%}
+
+{% block content %}
+<body>
+    <section id="header">
+        <a onclick="document.location='{% url 'core:index' %}';"><img src="{% static "assets/img/logo2.png" %}" class="logo"></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="{% url 'core:index' %}">Home</a></li>
+                <li><a class="active" href="{% url 'userauths:shop' %}">Shop</a></li>
+                <li><a href="{% url 'userauths:blog' %}">Blog</a></li>
+                <li><a href="{% url 'userauths:about' %}">About</a></li>
+                <li><a href="{% url 'userauths:contact' %}">Contact</a></li>
+                <div class="box">
+                    <div class="cart-count">0</div>
+                    <li><abbr title="Cart"><a><i class="fa-solid fa-cart-shopping" id="cart-icon"></i></a></abbr></li>
+                </div>
+                <div class="cart-new ">
+                    <div class="cart-title">Cart Items</div>
+                    <div class="cart-content">
+                        <!-- <div class="cart-box">
+                            <img src="img/products/p1.png" class="cart-img">
+                            <div class="detail-box">
+                                <div class="cart-food-title">Pedigree</div>
+                                <div class="price-box">
+                                    <div class="cart-price">₹100</div>
+                                    <div class="cart-amt">₹100</div>
+                                </div>
+                                <input type="number"  value="1" class="cart-quantity">
+                            </div>
+                            <i class="fa-solid fa-trash cart-remove" id="cart-remove"></i>
+                        </div>
+                        <div class="cart-box">
+                            <img src="img/products/p2.png" class="cart-img">
+                            <div class="detail-box">
+                                <div class="cart-food-title">Pedigree</div>
+                                <div class="price-box">
+                                    <div class="cart-price">₹100</div>
+                                    <div class="cart-amt">₹100</div>
+                                </div>
+                                <input type="number"  value="1" class="cart-quantity">
+                            </div>
+                            <i class="fa-solid fa-trash cart-remove" id="cart-remove"></i>
+                        </div> -->
+                    </div>
+                    <div class="total">
+                        <div class="total-title">Total</div>
+                        <div class="total-price">₹0</div>
+                    </div>
+                    <button class="normal" id="btn-buy" onclick="redirectIfNotLoggedIn()">Place Order</button>
+                    <script>
+                        function redirectIfNotLoggedIn() {
+                            // Check if the user is authenticated using JavaScript
+                            var isAuthenticated = {% if request.user.is_authenticated %} true {% else %} false {% endif %};
+                    
+                            if (!isAuthenticated) {
+                                // Redirect to login page if the user is not logged in
+                                window.location.href = "{% url 'userauths:sign-in' %}";
+                            } else {
+                                // Show order success alert if the user is logged in
+                                alert("Order placed successfully!");
+                            }
+                        }
+                    </script>
+                    <i class="fa-solid fa-xmark" id="cart-close"></i>
+                </div>
+                {% if request.user.is_authenticated %}
+                <li><abbr title="Logout"><a href="{% url 'userauths:sign-out'%}"><i class="fa-solid fa-user"></i></i></a></abbr></li>    
+                {% else %}
+                <li><abbr title="Login"><a href="{% url 'userauths:sign-in'%}"><i class="fa-solid fa-right-to-bracket"></i></a></abbr></li>
+                {% endif %}  
+            </ul>
+        </div>
+    </section>
+    <section id="page-header"> 
+        <h2>#stayhome</h2>
+        <p>Save more with coupons & up to 70% off !</p>
+    </section> 
+    <section id="product1" class="section-p1">  
+        <div class="pro-container">
+            <div class="pro">
+                <img class="food-img" src="{% static "assets/img/products/p1.png" %}">
+                <div class="des">
+                    <span>Pedigree</span>
+                    <h5 class="food-title">Dog Food</h5>
+                    <div class="star">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <h4 class="food-price">₹100</h4>
+                </div>
+                <a href="#"><i class="fa-solid fa-cart-shopping cart" id="add-cart"></i></a>
+            </div>
+            <div class="pro">
+                <img class="food-img" src="{% static "assets/img/products/p2.png" %}">
+                <div class="des">
+                    <span>Whiskas</span>
+                    <h5 class="food-title">Cat Food</h5>
+                    <div class="star">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <h4 class="food-price">₹100</h4>
+                </div>
+                <a href="#"><i class="fa-solid fa-cart-shopping cart" id="add-cart"></i></a>
+            </div>
+            <div class="pro">
+                <img class="food-img" src="{% static "assets/img/products/p3.png" %}">
+                <div class="des">
+                    <span>Hi-Red</span>
+                    <h5  class="food-title">Fish Food</h5>
+                    <div class="star">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <h4 class="food-price">₹100</h4>
+                </div>
+                <a href="#"><i class="fa-solid fa-cart-shopping cart" id="add-cart"></i></a>
+            </div>
+            <div class="pro">
+                <img class="food-img" src="{% static "assets/img/products/p4.png" %}">
+                <div class="des">
+                    <span>Happy Wings</span>
+                    <h5 class="food-title">Bird Food</h5>
+                    <div class="star">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <h4 class="food-price">₹100</h4>
+                </div>
+                <a href="#"><i class="fa-solid fa-cart-shopping cart" id="add-cart"></i></a>
+            </div>
+            <div class="pro">
+                <img class="food-img" src="{% static "assets/img/products/p5.png" %}">
+                <div class="des">
+                    <span>ABZ</span>
+                    <h5 class="food-title">Leash</h5>
+                    <div class="star">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <h4 class="food-price">₹100</h4>
+                </div>
+                <a href="#"><i class="fa-solid fa-cart-shopping cart" id="add-cart"></i></a>
+            </div>
+            <div class="pro">
+                <img class="food-img" src="{% static "assets/img/products/p6.png" %}">
+                <div class="des">
+                    <span>ABZ</span>
+                    <h5 class="food-title">Dog Bed</h5>
+                    <div class="star">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <h4 class="food-price">₹100</h4>
+                </div>
+                <a href="#"><i class="fa-solid fa-cart-shopping cart" id="add-cart"></i></a>
+            </div>
+            <div class="pro">
+                <img class="food-img" src="{% static "assets/img/products/p7.png" %}">
+                <div class="des">
+                    <span>ABZ</span>
+                    <h5 class="food-title">Aquarium</h5>
+                    <div class="star">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <h4 class="food-price">₹100</h4>
+                </div>
+                <a href="#"><i class="fa-solid fa-cart-shopping cart" id="add-cart"></i></a>
+            </div>
+            <div class="pro">
+                <img class="food-img" src="{% static "assets/img/products/p8.png" %}">
+                <div class="des">
+                    <span>ABZ</span>
+                    <h5 class="food-title">Cat Tree</h5>
+                    <div class="star">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <h4 class="food-price">₹100</h4>
+                </div>
+                <a href="#"><i class="fa-solid fa-cart-shopping cart" id="add-cart"></i></a>
+            </div>
+            <div class="pro">
+                <img class="food-img" src="{% static "assets/img/products/p9.png" %}">
+                <div class="des">
+                    <span>Happy Cat</span>
+                    <h5 class="food-title">Litter Sand</h5>
+                    <div class="star">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <h4 class="food-price">₹100</h4>
+                </div>
+                <a href="#"><i class="fa-solid fa-cart-shopping cart" id="add-cart"></i></a>
+            </div>
+            <div class="pro">
+                <img class="food-img" src="{% static "assets/img/products/p10.png" %}">
+                <div class="des">
+                    <span>ABZ</span>
+                    <h5 class="food-title">Toys</h5>
+                    <div class="star">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <h4 class="food-price">₹100</h4>
+                </div>
+                <a href="#"><i class="fa-solid fa-cart-shopping cart" id="add-cart"></i></a>
+            </div>
+            <div class="pro">
+                <img class="food-img" src="{% static "assets/img/products/p11.png" %}">
+                <div class="des">
+                    <span>ABZ</span>
+                    <h5 class="food-title">Pet Cage    </h5>
+                    <div class="star">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <h4 class="food-price">₹100</h4>
+                </div>
+                <a href="#"><i class="fa-solid fa-cart-shopping cart" id="add-cart"></i></a>
+            </div>
+            <div class="pro">
+                <img class="food-img" src="{% static "assets/img/products/p12.png" %}">
+                <div class="des">
+                    <span>ABZ</span>
+                    <h5 class="food-title">Bathing Brush</h5>
+                    <div class="star">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <h4 class="food-price">₹100</h4>
+                </div>
+                <a href="#"><i class="fa-solid fa-cart-shopping cart" id="add-cart"></i></a>
+            </div>
+            <div class="pro">
+                <img class="food-img" src="{% static "assets/img/products/p13.png" %}">
+                <div class="des">
+                    <span>ABZ</span>
+                    <h5 class="food-title">Trimmer</h5>
+                    <div class="star">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <h4 class="food-price">₹100</h4>
+                </div>
+                <a href="#"><i class="fa-solid fa-cart-shopping cart" id="add-cart"></i></a>
+            </div>
+            <div class="pro">
+                <img class="food-img" src="{% static "assets/img/products/p14.png" %}">
+                <div class="des">
+                    <span>ABZ</span>
+                    <h5 class="food-title">Soap and Shampoo</h5>
+                    <div class="star">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <h4 class="food-price">₹100</h4>
+                </div>
+                <a href="#"><i class="fa-solid fa-cart-shopping cart" id="add-cart"></i></a>
+            </div>
+            <div class="pro">
+                <img class="food-img" src="{% static "assets/img/products/p15.png" %}">
+                <div class="des">
+                    <span>ABZ</span>
+                    <h5 class="food-title">Food Bowl</h5>
+                    <div class="star">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <h4 class="food-price">₹100</h4>
+                </div>
+                <a href="#"><i class="fa-solid fa-cart-shopping cart" id="add-cart"></i></a>
+            </div>
+            <div class="pro">
+                <img class="food-img" src="{% static "assets/img/products/p16.png" %}">
+                <div class="des">
+                    <span>ABZ</span>
+                    <h5 class="food-title">Clothes</h5>
+                    <div class="star">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <h4 class="food-price">₹100</h4>
+                </div>
+                <a href="#"><i class="fa-solid fa-cart-shopping cart" id="add-cart"></i></a>
+            </div>
+        </div>
+    </section>
+    <section id="pagination" class="section-p1">
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#"><i class="fa-solid fa-circle-arrow-right"></i></a>
+    </section>
+    <section id="newsletter" class="section-p1 section-m1">
+        <div class="newstext">
+            <h4>Sign Up For Newsletters</h4>
+            <p>Get E-mail updates about our latest shop and <span>special offers</span></p>
+        </div>
+        <div class="form">
+            <input type="text" placeholder="Your email address">
+            <button class="normal">Sign Up</button>
+        </div>
+    </section>
+
+    {% endblock content %}

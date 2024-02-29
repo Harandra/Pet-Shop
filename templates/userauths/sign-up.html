@@ -1,0 +1,43 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pet Shop Registration</title>
+  <link rel="stylesheet" href="{% static "assets/Register.css" %}">
+  <link rel="icon" type="image/x-icon" href="{% static "assets/img/Register.png" %}">
+
+</head>
+<body>
+  <div class="container">
+    <img src="{% static "assets/img/logo3.png" %}">
+    {%if form.errors%}
+    <div class="alert alert-danger">
+        <strong>{{form.errors}}</strong>
+    </div>
+    {%endif%}
+    <h2>Register for Our Pet Shop</h2>
+    <form action="#" method="post" method="POST">
+        {% csrf_token %}
+        {{form.username}}
+        {{form.email}}
+        {{form.password1}}
+        {{form.password2}}
+      {% comment %} <label for="username">Username</label>
+      <input type="text" id="username" name="username" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required>
+    
+      <label for="password">Confrim Password</label>
+      <input type="password" id="password1" name="password1" required> {% endcomment %}
+
+      <input type="submit" value="Register">
+    </form>
+  </div>
+</body>
+</html>

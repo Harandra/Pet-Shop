@@ -1,0 +1,111 @@
+{% extends "partials/base.html" %}
+
+{%load static%}
+
+{% block content %}
+<body>
+    <section id="header">
+        <a onclick="document.location='{% url 'core:index' %}';"><img src="{% static 'assets/img/logo2.png' %}" class="logo"></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="{% url 'core:index' %}">Home</a></li>
+                <li><a href="{% url 'userauths:shop' %}">Shop</a></li>
+                <li><a href="{% url 'userauths:blog' %}">Blog</a></li>
+                <li><a href="{% url 'userauths:about' %}">About</a></li>
+                <li><a class="active" href="{% url 'userauths:contact' %}">Contact</a></li>
+                <div class="box">
+                    <div class="cart-count">0</div>
+                    <li><abbr title="Cart"><a href="{% url 'userauths:shop' %}"><i class="fa-solid fa-cart-shopping" id="cart-icon"></i></a></abbr></li>
+                </div>
+                <div class="cart-new ">
+                    <div class="cart-title">Cart Items</div>
+                    <div class="cart-content"></div>
+                    <div class="total">
+                        <div class="total-title">Total</div>
+                        <div class="total-price">₹0</div>
+                    </div>
+                    <button class="normal" id="btn-buy">Place Order</button>
+                    <i class="fa-solid fa-xmark" id="cart-close"></i>
+                </div>
+                {% if request.user.is_authenticated %}
+                <li><abbr title="Logout"><a href="{% url 'userauths:sign-out'%}"><i class="fa-solid fa-user"></i></i></a></abbr></li>    
+                {% else %}
+                <li><abbr title="Login"><a href="{% url 'userauths:sign-in'%}"><i class="fa-solid fa-right-to-bracket"></i></a></abbr></li>
+                {% endif %}     
+            </ul>
+        </div>
+    </section>
+    <section id="page-header" class="contact-header"> 
+        <h2>#let's_talk</h2>
+        <p>LEAVE A MESSAGE, We love to hear form you</p>
+    </section>
+    <section id="contact-details" class="section-p1">
+        <div class="details">
+            <span>GET IN TOUCH</span>
+            <h2>Vist one of our agency locations or contact us today</h2>
+            <h3>Head Office</h3>
+            <div>
+                <li>
+                    <i class="fa-regular fa-map"></i>
+                    <p>Asan memorial college of arts and science</p>
+                </li>
+                <li>
+                    <i class="fa-regular fa-envelope"></i>
+                    <p>PetShop@hotmail.com</p>
+                </li>
+                <li>
+                    <i class="fa-solid fa-phone"></i>
+                    <p>+91 1234567890</p>
+                </li>
+                <li>
+                    <i class="fa-regular fa-calendar-days"></i>
+                    <p>Mon - Sat</p>
+                </li>
+                <li>
+                    <i class="fa-regular fa-clock"></i>
+                    <p>09:00 - 21:00</p>
+                </li>
+            </div>
+        </div>
+        <div class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.724584466608!2d80.19790787572263!3d12.925414915887877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.
+            1!3m3!1m2!1s0x3a525c186291ed83%3A0xa214585c6b18c0ec!2sASAN%20Memorial%20College%20of%20Arts%20and%20Science!5e0!3m2!1sen!2sin!4v1708532756432!5m2!1sen!2sin" 
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+    <section id="form-details">
+        <form action="">
+            <span>LEAVE A MESSAGE</span>
+            <h2>We love to hear form you</h2>
+            <input type="text" placeholder="Your Name">
+            <input type="text" placeholder="E-mail">
+            <input type="text" placeholder="Subject">
+            <textarea name="" id="" cols="30" rows="10" placeholder="Your Message" ></textarea>
+            <button class="normal">Submit</button>
+        </form>
+        <div class="people">
+            <div>
+                <img src="{% static "assets/img/contact_us/p1.png" %}">
+                <p><span>Yuva</span> Senior Marketing Manager <br> Phone: +91 1234567890 <br>Email: contact@example.com</p>
+            </div>
+            <div>
+                <img src="{% static "assets/img/contact_us/p1.png" %}">
+                <p><span>Yuvashri</span> Senior Marketing Manager <br> Phone: +91 1234567890 <br>Email: contact@example.com</p>
+            </div>
+            <div>
+                <img src="{% static "assets/img/contact_us/p1.png" %}">
+                <p><span>Christabel</span> Senior Marketing Manager <br> Phone: +91 1234567890 <br>Email: contact@example.com</p>
+            </div>
+        </div>
+    </section>
+    <section id="newsletter" class="section-p1 section-m1">
+        <div class="newstext">
+            <h4>Sign Up For Newsletters</h4>
+            <p>Get E-mail updates about our latest shop and <span>special offers</span></p>
+        </div>
+        <div class="form">
+            <input type="text" placeholder="Your email address">
+            <button class="normal">Sign Up</button>
+        </div>
+    </section>
+    {% endblock content %}
